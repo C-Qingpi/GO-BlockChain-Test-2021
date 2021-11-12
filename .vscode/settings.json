@@ -1,0 +1,27 @@
+{
+    "go.toolsEnvVars": {
+        "GOPRIVATE": "townsy.private-github.com",
+        "GOPROXY": "https://goproxy.cn,direct",
+        "GONOPROXY": "none;",
+        "GONOSUMDB": "townsy.private-github.com"
+    },
+        "editor.formatOnSave": false
+    ,
+    "[go]": {
+
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": false
+        },
+    },
+    "go.formatTool": "gofmt",
+    "terminal.integrated.env.linux": {
+        "GOPRIVATE": "townsy.private-github.com",
+        "GOPROXY": "https://goproxy.cn,direct",
+        "GONOPROXY": "none;",
+        "GONOSUMDB": "townsy.private-github.com"
+    },
+    "gopls": {
+        "experimentalWorkspaceModule": true,
+    }
+}
