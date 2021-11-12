@@ -1,5 +1,11 @@
 package blockchain
 
+import (
+	"bytes"
+	"encoding/gob"
+	"log"
+)
+
 // GO中，大写的变量为public变量；小写的变量为private 变量。注意区分。
 
 type Block struct {
@@ -7,17 +13,6 @@ type Block struct {
 	Data     []byte
 	PrevHash []byte
 	Nonce    int
-}
-
-type BlockChain struct {
-	Blocks []*Block
-	// use pointesr *Block because there would be a lot of data
-}
-
-func (chain *BlockChain) AddBlock(data string) {
-	prevBlock := chain.Blocks[len(chain.Blocks)-1]
-	new := CreateBlock(data, prevBlock.Hash)
-	chain.Blocks = append(chain.Blocks, new)
 }
 
 func CreateBlock(data string, prevHash []byte) *Block {
@@ -33,6 +28,26 @@ func Genesis() *Block {
 	return CreateBlock("Genesis Block", []byte{})
 }
 
-func InitBlockChain() *BlockChain {
-	return &BlockChain{[]*Block{Genesis()}}
+// to conver block into bytes for storage
+func (b *Block) Serialize() []byte {
+	var res bytes.Buffer
+	encoder := gob.NewEncoder(&res)
+	err := encoder.Encode(b)
+	Handle(err)
+	return res.Bytes()
+	// takes Blocks, encode everything to bytes, handle err, return bytes.
+}
+
+func Deserialize(data []byte) *Block {
+	var block Block
+	decoder := gob.NewDecoder(bytes.NewReader(data))
+	err := decoder.Decode(&block)
+	Handle(err)
+	return &block
+}
+
+func Handle(err error) {
+	if err != nil {
+		log.Panic(err)
+	}
 }
