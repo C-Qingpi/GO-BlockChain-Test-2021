@@ -1,7 +1,7 @@
 package main
 
 import "fmt"
-import "example.com/blockchain"
+import "github.com/C-Qingpi/GO-BlockChain-Test-2021/blockchain"
 import "strconv"
 
 func PrintChain(chain *blockchain.BlockChain) {

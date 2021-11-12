@@ -1,7 +1,4 @@
-module example.com
+module github.com/C-Qingpi/GO-BlockChain-Test-2021
 
 go 1.17
 
-replace example.com/blockchain => ./blockchain
-
-require example.com/blockchain v0.0.0-00010101000000-000000000000
